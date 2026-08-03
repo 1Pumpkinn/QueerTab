@@ -13,6 +13,11 @@ import java.util.logging.Level;
 /**
  * Handles reading and writing player identity data to identities.yml.
  * Knows nothing about caching or the plugin's runtime state — just I/O.
+ *
+ * Presets are stored by id and resolved against the current
+ * {@link PresetRegistry} on load. If a player's stored id no longer
+ * exists in config.yml (e.g. it was removed), that field is silently
+ * left unset rather than failing to load the whole file.
  */
 public class IdentityStorage {
 
@@ -40,12 +45,12 @@ public class IdentityStorage {
 
                 String pronounId = config.getString(key + ".pronoun");
                 if (pronounId != null) {
-                    identity.setPronoun(PronounPreset.fromId(pronounId));
+                    identity.setPronoun(PresetRegistry.findPronoun(pronounId));
                 }
 
                 String sexualityId = config.getString(key + ".sexuality");
                 if (sexualityId != null) {
-                    identity.setSexuality(SexualityPreset.fromId(sexualityId));
+                    identity.setSexuality(PresetRegistry.findSexuality(sexualityId));
                 }
 
                 result.put(uuid, identity);

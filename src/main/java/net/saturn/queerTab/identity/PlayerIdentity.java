@@ -9,8 +9,8 @@ import java.util.UUID;
 public class PlayerIdentity {
 
     private final UUID uuid;
-    private PronounPreset pronoun;
-    private SexualityPreset sexuality;
+    private Preset pronoun;
+    private Preset sexuality;
 
     public PlayerIdentity(UUID uuid) {
         this.uuid = uuid;
@@ -20,19 +20,19 @@ public class PlayerIdentity {
         return uuid;
     }
 
-    public PronounPreset getPronoun() {
+    public Preset getPronoun() {
         return pronoun;
     }
 
-    public void setPronoun(PronounPreset pronoun) {
+    public void setPronoun(Preset pronoun) {
         this.pronoun = pronoun;
     }
 
-    public SexualityPreset getSexuality() {
+    public Preset getSexuality() {
         return sexuality;
     }
 
-    public void setSexuality(SexualityPreset sexuality) {
+    public void setSexuality(Preset sexuality) {
         this.sexuality = sexuality;
     }
 

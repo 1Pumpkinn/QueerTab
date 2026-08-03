@@ -1,7 +1,8 @@
 package net.saturn.queerTab.commands;
 
 import net.saturn.queerTab.identity.IdentityManager;
-import net.saturn.queerTab.identity.SexualityPreset;
+import net.saturn.queerTab.identity.Preset;
+import net.saturn.queerTab.identity.PresetRegistry;
 import net.saturn.queerTab.tab.TabListFormatter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -35,7 +36,7 @@ public class SexualityCommand implements CommandExecutor, TabCompleter {
                     sendUsage(player);
                     return true;
                 }
-                SexualityPreset preset = SexualityPreset.fromId(args[1]);
+                Preset preset = PresetRegistry.findSexuality(args[1]);
                 if (preset == null) {
                     player.sendMessage(ChatColor.RED + "Unknown preset. Use /sexuality list to see options.");
                     return true;
@@ -51,7 +52,7 @@ public class SexualityCommand implements CommandExecutor, TabCompleter {
             }
             case "list" -> {
                 player.sendMessage(ChatColor.YELLOW + "Available identity presets:");
-                for (SexualityPreset preset : SexualityPreset.values()) {
+                for (Preset preset : PresetRegistry.getSexualities()) {
                     player.sendMessage("  " + preset.getTag() + ChatColor.GRAY + " -> /sexuality set " + preset.getId());
                 }
             }
@@ -73,7 +74,7 @@ public class SexualityCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 2 && args[0].equalsIgnoreCase("set")) {
             return filter(
-                    Arrays.stream(SexualityPreset.values()).map(SexualityPreset::getId).collect(Collectors.toList()),
+                    PresetRegistry.getSexualities().stream().map(Preset::getId).collect(Collectors.toList()),
                     args[1]
             );
         }

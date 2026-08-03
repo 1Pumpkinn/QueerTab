@@ -16,3 +16,15 @@ commands:
     description: Set, clear, or list your identity tag.
     usage: /sexuality <set|clear|list> [preset]
     permission: queertab.use
+  queertab:
+    description: Reload QueerTab's config.yml (pronoun/sexuality presets).
+    usage: /queertab reload
+    permission: queertab.admin
+
+permissions:
+  queertab.use:
+    description: Allows use of /pronouns and /sexuality.
+    default: true
+  queertab.admin:
+    description: Allows reloading QueerTab's config.
+    default: op

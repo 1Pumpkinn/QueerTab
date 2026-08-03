@@ -1,7 +1,8 @@
 package net.saturn.queerTab.commands;
 
 import net.saturn.queerTab.identity.IdentityManager;
-import net.saturn.queerTab.identity.PronounPreset;
+import net.saturn.queerTab.identity.Preset;
+import net.saturn.queerTab.identity.PresetRegistry;
 import net.saturn.queerTab.tab.TabListFormatter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -35,7 +36,7 @@ public class PronounsCommand implements CommandExecutor, TabCompleter {
                     sendUsage(player);
                     return true;
                 }
-                PronounPreset preset = PronounPreset.fromId(args[1]);
+                Preset preset = PresetRegistry.findPronoun(args[1]);
                 if (preset == null) {
                     player.sendMessage(ChatColor.RED + "Unknown preset. Use /pronouns list to see options.");
                     return true;
@@ -51,7 +52,7 @@ public class PronounsCommand implements CommandExecutor, TabCompleter {
             }
             case "list" -> {
                 player.sendMessage(ChatColor.YELLOW + "Available pronoun presets:");
-                for (PronounPreset preset : PronounPreset.values()) {
+                for (Preset preset : PresetRegistry.getPronouns()) {
                     player.sendMessage("  " + preset.getTag() + ChatColor.GRAY + " -> /pronouns set " + preset.getId());
                 }
             }
@@ -73,7 +74,7 @@ public class PronounsCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 2 && args[0].equalsIgnoreCase("set")) {
             return filter(
-                    Arrays.stream(PronounPreset.values()).map(PronounPreset::getId).collect(Collectors.toList()),
+                    PresetRegistry.getPronouns().stream().map(Preset::getId).collect(Collectors.toList()),
                     args[1]
             );
         }

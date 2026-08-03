@@ -41,12 +41,12 @@ public class IdentityManager {
         return get().cache.computeIfAbsent(uuid, PlayerIdentity::new);
     }
 
-    public static void setPronoun(UUID uuid, PronounPreset preset) {
+    public static void setPronoun(UUID uuid, Preset preset) {
         getIdentity(uuid).setPronoun(preset);
         get().save();
     }
 
-    public static void setSexuality(UUID uuid, SexualityPreset preset) {
+    public static void setSexuality(UUID uuid, Preset preset) {
         getIdentity(uuid).setSexuality(preset);
         get().save();
     }

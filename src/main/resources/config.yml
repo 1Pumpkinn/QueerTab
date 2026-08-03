@@ -1,0 +1,69 @@
+# QueerTab configuration.
+#
+# Add, remove, or edit entries under "pronouns" and "sexualities" below
+#
+# Each entry needs:
+#   id      - lowercase, no spaces. What players type after "set".
+#   display - the text shown inside the tab-list tag, e.g. "He/Him".
+#   color   - one of Bukkit's ChatColor names (case-insensitive), e.g.
+#             BLACK, DARK_BLUE, DARK_GREEN, DARK_AQUA, DARK_RED, DARK_PURPLE,
+#             GOLD, GRAY, DARK_GRAY, BLUE, GREEN, AQUA, RED, LIGHT_PURPLE,
+#             YELLOW, WHITE. An unrecognized name falls back to WHITE and
+#             logs a warning on startup/reload.
+#
+# After editing this file while the server is running, run "/queertab
+# reload" to apply the changes without restarting.
+#
+# Note: identities.yml stores each player's choice by id. If you remove an
+# id that a player already has set, they simply keep showing that old tag
+# until they change it (their stored id just won't be selectable again
+# unless you re-add it).
+
+pronouns:
+  - id: he_him
+    display: "He/Him"
+    color: AQUA
+  - id: she_her
+    display: "She/Her"
+    color: LIGHT_PURPLE
+  - id: they_them
+    display: "They/Them"
+    color: YELLOW
+  - id: he_they
+    display: "He/They"
+    color: AQUA
+  - id: she_they
+    display: "She/They"
+    color: LIGHT_PURPLE
+  - id: any
+    display: "Any"
+    color: GREEN
+  - id: ask
+    display: "Ask Me"
+    color: GRAY
+
+sexualities:
+  - id: gay
+    display: "Gay"
+    color: BLUE
+  - id: lesbian
+    display: "Lesbian"
+    color: LIGHT_PURPLE
+  - id: bisexual
+    display: "Bi"
+    color: DARK_PURPLE
+  - id: pansexual
+    display: "Pan"
+    color: YELLOW
+  - id: asexual
+    display: "Ace"
+    color: DARK_GRAY
+  - id: straight
+    display: "Straight"
+    color: WHITE
+  - id: queer
+    display: "Queer"
+    color: RED
+  - id: ask
+    display: "Ask Me"
+    color: GRAY

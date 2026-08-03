@@ -1,8 +1,7 @@
 package net.saturn.queerTab.tab;
 
+import net.saturn.queerTab.identity.Preset;
 import net.saturn.queerTab.identity.PlayerIdentity;
-import net.saturn.queerTab.identity.PronounPreset;
-import net.saturn.queerTab.identity.SexualityPreset;
 import org.bukkit.entity.Player;
 
 /**
@@ -24,8 +23,8 @@ public final class TabListFormatter {
         StringBuilder builder = new StringBuilder(player.getName());
 
         if (identity != null) {
-            PronounPreset pronoun = identity.getPronoun();
-            SexualityPreset sexuality = identity.getSexuality();
+            Preset pronoun = identity.getPronoun();
+            Preset sexuality = identity.getSexuality();
 
             if (pronoun != null) {
                 builder.append(' ').append(pronoun.getTag());
